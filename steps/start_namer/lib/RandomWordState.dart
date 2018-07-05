@@ -10,7 +10,7 @@ class RandomWordState extends State<RandomWords> {
   Widget _buildSuggestions() {
     return new ListView.builder(
       padding: const EdgeInsets.all(16.0),
-      itemBuilder: (BuildContext _context, int i){
+      itemBuilder: (BuildContext _context, int i) {
         if (i.isOdd) {
           return new Divider();
         }
@@ -21,7 +21,7 @@ class RandomWordState extends State<RandomWords> {
         }
         return _buildRow(_suggestions[index]);
       },
-    ); 
+    );
   }
 
   Widget _buildRow(WordPair pair) {
@@ -31,10 +31,44 @@ class RandomWordState extends State<RandomWords> {
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: new Icon(   // 新增代码开始 ...
-      alreadySaved ? Icons.favorite : Icons.favorite_border,
-      color: alreadySaved ? Colors.red : null,
-    ),
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ),
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      },
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          final Iterable<ListTile> tiles = _saved.map(
+            (WordPair pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final List<Widget> divided = ListTile
+              .divideTiles(
+                context: context,
+                tiles: tiles,
+              )
+              .toList();
+        },
+      ),
     );
   }
 
@@ -43,6 +77,9 @@ class RandomWordState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('thinkreed name generator'),
+        actions: <Widget>[
+          new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestions(),
     );
