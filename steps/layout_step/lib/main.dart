@@ -4,6 +4,54 @@ void main() {
   runApp(MyApp());
 }
 
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteWidgetState createState() {
+    return _FavoriteWidgetState();
+  }
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isLiked = true;
+  int _likeCount = 41;
+
+  void _toggle() {
+    setState(() {
+      if (_isLiked) {
+        _isLiked = false;
+        _likeCount -= 1;
+      } else {
+        _isLiked = true;
+        _likeCount += 1;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(0.0),
+          child: IconButton(
+            icon: (_isLiked ? Icon(Icons.star) : Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggle,
+          ),
+        ),
+        SizedBox(
+          width: 18.0,
+          child: Container(
+            child: Text('$_likeCount'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,11 +79,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
+          FavoriteWidget(),
         ],
       ),
     );
