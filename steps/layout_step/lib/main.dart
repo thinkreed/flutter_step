@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 's11_state.dart';
+import 's12_parent_state.dart';
 
 void main() {
-  runApp(StateApp());
+  runApp(ParentStateApp());
 }
