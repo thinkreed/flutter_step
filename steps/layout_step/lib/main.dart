@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 's14_align_column.dart';
+import 's15_align_row.dart';
 
 void main() {
-  runApp(AlignColumnApp());
+  runApp(AlignRowApp());
 }
