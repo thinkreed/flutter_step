@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-import 's15_align_row.dart';
+import 's16_size_widget.dart';
 
 void main() {
-  runApp(AlignRowApp());
+  debugPaintSizeEnabled = true;
+  runApp(SizeWidgetApp());
 }
