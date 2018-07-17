@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-import 's18_nested_row_column.dart';
+import 's19_mix_layout.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
-  runApp(NestRowColumnApp());
+  runApp(MixLayoutApp());
 }
