@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-import 's23_json.dart';
+import 's24_animate_logo.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
-  runApp(JsonApp());
+  runApp(LogoApp());
 }
